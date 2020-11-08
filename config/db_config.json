@@ -1,0 +1,6 @@
+{
+    "mongo_url" : "mongo",
+    "db_name" : "eALPlogS",
+    "user" : "root",
+    "pass" : "pass"
+}

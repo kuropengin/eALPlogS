@@ -1,0 +1,6 @@
+{
+    "lrs_url" : "lrs",
+    "Authorization" : "auth",
+    "key" : "key",
+    "secret" : "secret"
+}
