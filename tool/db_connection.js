@@ -18,26 +18,43 @@ mongoose.connect( db_path , {
 });                                                                                                                                                     
 mongoose.Promise = Promise;                                                                                                                             
                                                                                                                                                         
-const template_class = new mongoose.Schema({
+const template_config = new mongoose.Schema({
   class : String , 
   tool_id : String ,
+  tool_name : String ,
   priority : Number ,
   search_rule : {
     search_mode: String,
     search_word: String
   },
   target_rule : {
-    target_mode: String
+    target_mode: String,
+    split_index: Number
   },
-  convert_rule: {
-    convert_mode: String,
-    convert_verb: {
-      id: String,
-      display: {}
-    }
-  }
-});                                                                                                                                               
-                                                                                                                                                        
-                                                                                                                                                        
-exports.connection = mongoose.connection;                                                                                                               
-exports.collection_config = mongoose.model('configs', template_class);
+  convert_rule: []
+
+}); 
+
+const template_class = new mongoose.Schema({
+  class : String , 
+  grouping : String
+}); 
+
+const template_student = new mongoose.Schema({
+  student_id : String , 
+  actor : String
+});
+
+const template_temp_log = new mongoose.Schema({
+  class_id : String ,
+  student_id : String ,
+  tool_id : String,
+  timestamp : { type: Date, index: { expireAfterSeconds: 60*60*24*3 } },
+  msg : String
+});
+
+exports.connection = mongoose.connection;
+exports.collection_config = mongoose.model('configs', template_config);
+exports.collection_class = mongoose.model('classes', template_class);
+exports.collection_student = mongoose.model('students', template_student);
+exports.collection_temp_log = mongoose.model('temp_logs', template_temp_log);
