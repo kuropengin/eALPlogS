@@ -1,8 +1,8 @@
 {
-    "lrs_url" : "https://kurolrs.yukkuriikouze.com",
-    "xapi_url" : "https://kuroxapi.yukkuriikouze.com",
-    "eALPluS_url" : "https://eALPluS.shinshu-u.ac.jp",
-    "Authorization" : "Basic YmVjMmMxN2E0MjVlNTdhY2VmOGMyYjE4Y2RiMWE3MWFkNmU2MTNmMjo3Zjk0NGRhODJhY2U0NDFlZjEyNWYxNWJiZmVjZjk4Nzk4YmU5YjEx",
+    "lrs_url" : "",
+    "xapi_url" : "",
+    "eALPluS_url" : "",
+    "Authorization" : "",
     "key" : "key",
     "secret" : "secret"
 }
