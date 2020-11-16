@@ -35,6 +35,22 @@ const template_config = new mongoose.Schema({
 
 }); 
 
+const template_eALPluS = new mongoose.Schema({
+  tool_id : String ,
+  tool_name : String ,
+  priority : Number ,
+  search_rule : {
+    search_mode: String,
+    search_word: String
+  },
+  target_rule : {
+    target_mode: String,
+    split_index: Number
+  },
+  convert_rule: []
+
+}); 
+
 const template_class = new mongoose.Schema({
   class : String , 
   grouping : String
@@ -54,7 +70,8 @@ const template_temp_log = new mongoose.Schema({
 });
 
 exports.connection = mongoose.connection;
-exports.collection_config = mongoose.model('configs', template_config);
+exports.collection_config = mongoose.model('class_configs', template_config);
+exports.collection_eALPluS = mongoose.model('eALPluS_configs', template_eALPluS);
 exports.collection_class = mongoose.model('classes', template_class);
 exports.collection_student = mongoose.model('students', template_student);
 exports.collection_temp_log = mongoose.model('temp_logs', template_temp_log);

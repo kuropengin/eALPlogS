@@ -4,6 +4,7 @@ const lrs_config = require('../config/lrs_config.json');
 const log_db = require('../tool/db_connection');
 
 const collection_config = log_db.collection_config;
+const collection_eALPluS_config = log_db.collection_eALPluS;
 const collection_class = log_db.collection_class;
 const collection_student = log_db.collection_student;
 const collection_temp_log = log_db.collection_temp_log;
@@ -11,11 +12,32 @@ const collection_temp_log = log_db.collection_temp_log;
 
 
 const converter = function(log){
-    config_check(log);
+    if(!log.eALPluS){
+        config_check(log);
+    }
+    else{
+        config_get_eALPluS(log);
+    }
 }
 
 const config_check = function(log){
     collection_config.find({ class: log.class_id }, function(err, docs){
+        if(err){
+            console.log("config search error : " + log.class_id);
+        }
+        else{
+            if(!docs.length){
+                console.log("Not found config : " + log.class_id);
+            }
+            else{
+                log_search(log, docs);
+            }
+        }
+    });
+}
+
+const config_get_eALPluS = function(log){
+    collection_eALPluS_config.find({ tool_id: "eALPluS" }, function(err, docs){
         if(err){
             console.log("config search error : " + log.class_id);
         }
